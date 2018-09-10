@@ -9,6 +9,7 @@ Classic Arcade Game Clone
 游戏玩法:
 -打开index.html
 -按上下左右键来移动玩家角色
+-成功渡河之后，会出现弹窗提示玩家'YOU WIN THE GAME!'
 
 刷新页面，可以更换玩家角色形象（共三个形象）
 -一旦碰到敌人Bug，或者正确通过，游戏自动Rest
