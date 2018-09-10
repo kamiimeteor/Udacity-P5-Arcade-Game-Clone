@@ -4,19 +4,28 @@
 
 // 角色的类
 var Character = function(x, y, sprite) {
+    console.log(x, y, sprite)
   this.x = x;
-  this.y = y;
+  this.y = (y-1)*80+65;
   this.sprite = sprite;
 };
+
+Character.prototype.update = function(dt) {
+    this.x = this.x + this.speed * dt;
+    if (this.x > ctx.canvas.width) {
+        this.x = -100
+    };
+  };
 
 // 此为游戏必须的函数，用来在屏幕上画出角色
 Character.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+Character.prototype.constructor = Character;
 
-var Enemy = function(x,y,speed) {
+var Enemy = function(row,speed) {
    //调用 Character 设置 enemy 的属性
-   Character.call(this, x, y, 'images/enemy-bug.png');
+   Character.call(this, -100, row, 'images/enemy-bug.png');
    this.speed = speed;
 };
 
@@ -85,9 +94,11 @@ var allEnemies = [];
 function generateEnemies () {
     for (var i = 0; i < 5; i++) {
         var row = Math.floor(Math.random() * (4 - 1)) + 1;
-        var speed = Math.floor(Math.random() * 50) * 10;
+        var speed = Math.floor(Math.random() * 50) * 5;
+        console.log(speed)
         allEnemies[i] = new Enemy(row, speed);
     }
+    console.log(allEnemies)
 };
 generateEnemies();
 var player = new Player();
